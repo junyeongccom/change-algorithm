@@ -34,7 +34,8 @@ def index() :
             print("💰100원:",coin100, "개")
             print("💰50원:",coin50, "개")
             print("💰10원:",coin10, "개")
-            return render_template("index.html", total = total, paid = paid, amount = amount, coin500 = coin500, coin100 = coin100, coin50 = coin50, coin10 = coin10)
+            return render_template("index.html", total = total, paid = paid, amount = amount, 
+                                   coin500 = coin500, coin100 = coin100, coin50 = coin50, coin10 = coin10)
 
     else:
         print("💲GET방식으로 요청💲")
