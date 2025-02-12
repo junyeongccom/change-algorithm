@@ -107,10 +107,11 @@
     <h1>🤑원화 환전🤑</h1>
 
     <div class="form-container">
-        <form action="/exchangewon" method="POST">
+        <form action="/exchange" method="POST">
             <div class="form-group">
                 <label for="total">환전할 금액(원):</label>
-                <input type="number" id="total" name="total" min="1" required>
+                <input type="text" id="currency" name="currency" min="0" value="WON" required>
+                <input type="number" id="amount" name="amount" min="0" required>
             </div>
 
             <button type="submit">계산하기</button>
@@ -119,7 +120,7 @@
     </div>
     {{render_html | default('') | safe}}
 
-    <h1><a href='/exchangewon'>🧐다시 계산하기🧐</a></h1>
+    <h1><a href='/won'>🧐다시 계산하기🧐</a></h1>
     <h1><a href='/'>🏠홈으로🏠</a></h1>
     
 </body>

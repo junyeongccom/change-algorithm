@@ -118,10 +118,11 @@
     <h1>🤑 달러 환전 🤑</h1>
 
     <div class="form-container">
-        <form action="/exchangedollar" method="POST">
+        <form action="/exchange" method="POST">
             <div class="form-group">
                 <label for="unit">환전할 금액(달러)</label>
-                <input type="number" id="total" name="total" min="1" required>
+                <input type="text" id="currency" name="currency" min="0" value="USD" required>
+                <input type="number" id="amount" name="amount" min="0" required>
             </div>
             <button type="submit">계산하기</button>
         </form>
@@ -130,7 +131,7 @@
     {{ render_html | default('') | safe }}
 
     <div class="bottom-links">
-        <h1><a href='/exchangedollar'>🧐 다시 계산하기 🧐</a></h1>
+        <h1><a href='/dollar'>🧐 다시 계산하기 🧐</a></h1>
         <h1><a href='/'>🏠 홈으로 🏠</a></h1>
     </div>
 </body>
