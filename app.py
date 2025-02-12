@@ -1,21 +1,8 @@
 from flask import Flask, render_template, request
+
+from com.junyeongc.won.exchange_d_controller import ExchangeDController
+from com.junyeongc.won.exchange_d_model import ExchangeDModel
 app = Flask(__name__)
-
-def get_unit_count(total, won_list):
-        money = int(total)
-        won_dict = {}
-        for won in won_list:
-            won_dict [won] = money // won
-            money %= won
-        return won_dict
-
-def get_dollar_count(total, dollar_list):
-        money = int(total)
-        dollar_dict = {}
-        for dollar in dollar_list:
-            dollar_dict [dollar] = money // dollar
-            money %= dollar
-        return dollar_dict
 
 
 @app.route('/')
@@ -42,14 +29,7 @@ def exchangewon() :
 
         won_list = [WON_50000, WON_10000, WON_5000, WON_1000, WON_500, WON_100, WON_50, WON_10]
 
-        won_dict = get_unit_count(total, won_list)
-        
-        for won, count in won_dict.items():
-            print(f"{won}원:{count}개")
-
-        render_html = '<h1> 결과보기 </h1>'
-        for won, count in won_dict.items():
-            render_html += f"{won}원:{count}개<br/>"
+        render_html = render_html
 
         return render_template("exchangewon.html", render_html = render_html)
 
@@ -64,29 +44,20 @@ def exchangedollar() :
     if request.method == "POST" :
         print("💲POST방식으로 요청💲")
         total = request.form.get('total')
-        print("📝총금액(달러):",total)
-        
-         
-        DOLLAR_100 = 100
-        DOLLAR_50 = 50
-        DOLLAR_20 = 20
-        DOLLAR_10 = 10
-        DOLLAR_5 = 5
-        DOLLAR_2 = 2
-        DOLLAR_1 = 1
+        print("📝총금액(달러):",total) 
 
-        dollar_list = [DOLLAR_100, DOLLAR_50, DOLLAR_20, DOLLAR_10, DOLLAR_5, DOLLAR_2, DOLLAR_1]
+        controller = ExchangeDController(total = total)
+        resp: ExchangeDModel = controller.get_result()
+        dollar_dict = resp.dollar_dict
 
-        dollar_dict = get_dollar_count(total, dollar_list)
-        
         for dollar, count in dollar_dict.items():
             print(f"${dollar}:{count}장")
 
-        dollar_html = '<h1> 결과보기 </h1>'
+        render_html = '<h3>결과보기</h3>'
         for dollar, count in dollar_dict.items():
-            dollar_html += f"{dollar}원:{count}개<br/>"
+            render_html += f"${dollar}:{count}개<br/>"
 
-        return render_template("exchangedollar.html", dollar_html = dollar_html)
+        return render_template("exchangedollar.html", render_html = render_html)
 
     else:
         print("💲GET방식으로 요청💲")

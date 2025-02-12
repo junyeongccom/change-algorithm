@@ -3,80 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>환전 선택</title>
+    <title>환전 선택 | Toss 스타일</title>
     <style>
-        /* 전체 페이지 스타일 */
+        @import url('https://cdn.jsdelivr.net/npm/pretendard@1.3.6/dist/web/variable/pretendardvariable.css');
+
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Pretendard', sans-serif;
+            background: radial-gradient(circle, #D9ECFF, #A8C7FF, #7FA8FF);
             margin: 0;
-            height: 100vh; /* 전체 화면 높이 */
+            height: 100vh;
             display: flex;
-            justify-content: center; /* 가로 중앙 정렬 */
-            align-items: center; /* 세로 중앙 정렬 */
-        }
-
-        /* 전체 컨테이너 */
-        .container {
-            text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 제목 스타일 */
-        h1 {
-            color: #333;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
-        /* 버튼 컨테이너 */
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            justify-content: center;
             align-items: center;
         }
 
-        /* 버튼 스타일 */
+        .container {
+            text-align: center;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            gap: 10px;
+        }
+
+        .title img {
+            width: 22px;
+            height: 22px;
+            vertical-align: middle;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            margin-top: 15px;
+        }
+
         .exchange-btn {
-            display: inline-block;
-            width: 200px;
-            padding: 15px 0;
-            font-size: 20px;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 260px;
+            padding: 16px 0;
+            font-size: 18px;
+            font-weight: 600;
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 12px;
             transition: 0.3s;
             text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            gap: 8px;
         }
 
         .won-btn {
-            background-color: #0077cc;
+            background-color: #A8C7FF;
         }
 
         .dollar-btn {
-            background-color: #28a745;
+            background-color: #A0E0D0;
         }
 
-        /* 버튼 호버 효과 */
         .exchange-btn:hover {
-            opacity: 0.8;
-            transform: scale(1.05);
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>🤑 환전하려는 화폐 종류를 선택하세요 🤑</h1>
+        <div class="title">
+            <img src="https://img.icons8.com/ios/50/000000/currency-exchange.png" alt="환전 아이콘">
+            환전하려는 화폐를 선택하세요
+            <img src="https://img.icons8.com/ios/50/000000/currency-exchange.png" alt="환전 아이콘">
+        </div>
 
         <div class="button-container">
-            <a href="/exchangewon" class="exchange-btn won-btn">🪙 원화 환전 🪙</a>
-            <a href="/exchangedollar" class="exchange-btn dollar-btn">💲 달러 환전 💲</a>
+            <a href="/exchangewon" class="exchange-btn won-btn">
+                🪙 원화 환전 🪙
+            </a>
+            <a href="/exchangedollar" class="exchange-btn dollar-btn">
+                💲 달러 환전 💲
+            </a>
         </div>
     </div>
 
