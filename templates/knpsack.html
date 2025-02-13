@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>욕심쟁이 배낭 문제 입력</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        label, input {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+        }
+        input[type="number"] {
+            padding: 5px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: darkblue;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align: center;">욕심쟁이 배낭 문제 입력</h2>
+
+    <form action="/solve_knpsack" method="post">
+        <!-- 배낭 최대 용량 입력 -->
+        <label for="capacity">배낭 최대 용량(무게):</label>
+        <input type="number" id="capacity" name="capacity" value="10" required>
+
+        <!-- 물체 정보 입력 -->
+        <h3>물체 정보 입력</h3>
+        
+        <label for="weight1">물체 1 무게:</label>
+        <input type="number" id="weight1" name="weight1" value="4" required>
+        <label for="value1">물체 1 가치:</label>
+        <input type="number" id="profit1" name="profit1" value="16" required>
+
+        <label for="weight2">물체 2 무게:</label>
+        <input type="number" id="weight2" name="weight2" value="2" required>
+        <label for="value2">물체 2 가치:</label>
+        <input type="number" id="profit2" name="profit2" value="4" required>
+
+        <label for="weight3">물체 3 무게:</label>
+        <input type="number" id="weight3" name="weight3" value="4" required>
+        <label for="value3">물체 3 가치:</label>
+        <input type="number" id="profit3" name="profit3" value="12" required>
+
+        <label for="weight4">물체 4 무게:</label>
+        <input type="number" id="weight4" name="weight4" value="3" required>
+        <label for="value4">물체 4 가치:</label>
+        <input type="number" id="profit4" name="profit4" value="15" required>
+
+        <button type="submit">최대 이익 계산하기</button>
+    </form>
+    {{render_html | default('') | safe}}
+    <h1><a href='/solve_knpsack'>🧐다시 계산하기🧐</a></h1>
+    <h1><a href='/index'>🏠홈으로🏠</a></h1>
+</body>
+</html>

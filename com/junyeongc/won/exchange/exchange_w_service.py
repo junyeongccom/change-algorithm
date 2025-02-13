@@ -1,5 +1,5 @@
 
-from com.junyeongc.won.exchange_w_model import ExchangeModel
+from com.junyeongc.won.exchange.exchange_w_model import ExchangeModel
 
 
 class ExchangeService:

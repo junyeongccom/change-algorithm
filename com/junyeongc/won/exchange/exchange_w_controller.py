@@ -1,5 +1,5 @@
-from com.junyeongc.won.exchange_w_model import ExchangeModel
-from com.junyeongc.won.exchange_w_service import ExchangeService
+from com.junyeongc.won.exchange.exchange_w_model import ExchangeModel
+from com.junyeongc.won.exchange.exchange_w_service import ExchangeService
 
 class ExchangeController:
 

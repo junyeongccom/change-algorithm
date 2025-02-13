@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
-from com.junyeongc.won.exchange_w_controller import ExchangeController
-from com.junyeongc.won.exchange_w_model import ExchangeModel
+from com.junyeongc.won.exchange.exchange_w_controller import ExchangeController
+from com.junyeongc.won.exchange.exchange_w_model import ExchangeModel
+from com.junyeongc.won.knpsack.knpsack_controller import KnpsackController, KnpsackController
+from com.junyeongc.won.knpsack.knpsack_model import KnpsackModel
 app = Flask(__name__)
 
 @app.route('/')
@@ -14,6 +16,10 @@ def exchangedollar() :
 @app.route('/won')
 def exchangewon() :
     return render_template('exchangewon.html')
+
+@app.route('/knpsack')
+def knapsack() :
+    return render_template('knpsack.html')
 
 @app.route('/exchange', methods=["POST", "GET"] )
 def paid():
@@ -38,8 +44,46 @@ def paid():
             print("잘못된 화폐단위입니다.")
 
     else:
-         print("😊GET 접근😊")
-         return render_template('exchangewon.html')
+        pass
+
+@app.route('/solve_knpsack', methods=["POST", "GET"] )
+def solve_knpsack():
+    print("💰가방 문제 풀기기💰")
+    if request.method == "POST" :
+        print("😊POST 접근😊")       
+        capacity = int(request.form.get('capacity'))
+        weight1 = int(request.form.get('weight1'))
+        weight2 = int(request.form.get('weight2'))
+        weight3 = int(request.form.get('weight3'))
+        weight4 = int(request.form.get('weight4'))
+        profit1 = int(request.form.get('profit1'))
+        profit2 = int(request.form.get('profit2'))
+        profit3 = int(request.form.get('profit3'))
+        profit4 = int(request.form.get('profit4'))
+        print("capacity: ", capacity)
+        print("weight1: ", weight1)
+        print("weight2: ", weight2)
+        print("weight3: ", weight3)
+        print("weight4: ", weight4)
+        print("profit1: ", profit1)
+        print("profit2: ", profit2)
+        print("profit3: ", profit3)
+        print("profit4: ", profit4)
+
+        controller = KnpsackController(capacity=capacity, weight1=weight1, weight2=weight2, 
+                                        weight3=weight3, weight4=weight4, profit1=profit1, 
+                                        profit2=profit2, profit3=profit3, profit4=profit4)
+        resp : KnpsackModel = controller.get_result()
+        
+        render_html = "<h1>결과보기</h1>"
+        render_html += "<h2>선택된 아이템 목록</h2>"
+        for item in resp.items:
+            render_html += f"이익: {item[0]}, 무게: {item[1]}<br>"
+
+        render_html += f"<h2>최대 얻을 수 있는 이익: {resp.total_value}</h2>"
+
+    else:
+        return render_template('knpsack.html')
 
 
 if __name__ == '__main__':
