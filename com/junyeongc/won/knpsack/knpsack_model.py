@@ -13,7 +13,8 @@ class KnpsackModel:
     profit3: int
     profit4: int
     items: dict
-    total_value: int
+    total_profit: int
+    select_box: list
 
     @property
     def capacity(self) -> int:
@@ -86,9 +87,16 @@ class KnpsackModel:
         self._items = items
     
     @property
-    def total_value(self) -> float:
-        return self._total_value
-    @total_value.setter
-    def total_value(self, total_value):
-        self._total_value = total_value
+    def total_profit(self) -> float:
+        return self._total_profit
+    @total_profit.setter
+    def total_profit(self, total_profit):
+        self._total_profit = total_profit
+
+    @property
+    def select_box(self) -> int:
+        return self._select_box
+    @select_box.setter
+    def select_box(self, select_box):
+        self._select_box = select_box
 

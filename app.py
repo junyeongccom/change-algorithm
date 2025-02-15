@@ -74,13 +74,15 @@ def solve_knpsack():
                                         weight3=weight3, weight4=weight4, profit1=profit1, 
                                         profit2=profit2, profit3=profit3, profit4=profit4)
         resp : KnpsackModel = controller.get_result()
+        print(resp)
         
         render_html = "<h1>결과보기</h1>"
-        render_html += "<h2>선택된 아이템 목록</h2>"
-        for item in resp.items:
-            render_html += f"이익: {item[0]}, 무게: {item[1]}<br>"
+        render_html += "<h3>최대 이익:</h3>" + str(resp.total_profit)
+        render_html += "<h3>담을 항목:</h3>" + str(resp.select_box)
 
-        render_html += f"<h2>최대 얻을 수 있는 이익: {resp.total_value}</h2>"
+        return render_template('knpsack.html', render_html = render_html)
+
+        
 
     else:
         return render_template('knpsack.html')
@@ -88,3 +90,6 @@ def solve_knpsack():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+   
